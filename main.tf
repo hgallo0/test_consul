@@ -1,6 +1,6 @@
 provider "aws" {
   region = "us-east-1"
-  profile    = "contino-els-hgallo"
+  profile    = "hgallo"
 }
 
 data "terraform_remote_state" "remote_state" {
@@ -10,15 +10,13 @@ data "terraform_remote_state" "remote_state" {
         key = "prod/terraform.tfstate"
         region = "us-east-1"
         dynamodb_table = "prod_lock"
-        profile = "contino-els-hgallo"
+        profile = "hgallo"
     }
 }
 
 // consul nodes 
 module "ecs" {
   source = "./modules/autoscaling"
-#  source = "github.com/contino/ecs.git//terraform/modules/autoscaling"
-#  version = "v1.1.0"
 
   ami_value        = "ubuntu/images/hvm-ssd/ubuntu-xenial-16.04-amd64-server-20180109"
   ami_owner        = "099720109477"
